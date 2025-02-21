@@ -1,0 +1,20 @@
+# IDE
+.idea/
+.vscode/
+.DS_Store
+
+# Environments
+.env
+.venv
+
+# Dependencies
+node_modules
+
+# Temporary files
+.cache
+.temp
+build
+cache
+dist
+test
+log
