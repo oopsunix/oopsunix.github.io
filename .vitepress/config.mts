@@ -41,6 +41,25 @@ export default defineConfig({
   appearance:'dark', // 默认主题的外观模式，可选值为 'light' | 'dark'
   srcDir: "docs", // 指定文档的根目录
   base: '/', // 设置网站根路径，默认是 '/'
+
+
+  // 生成sitemap 站点地图
+  sitemap: {
+    hostname: 'https://www.akams.cn'
+  },
+
+  //markdown配置
+  markdown: {
+    // 代码块显示行号
+    lineNumbers: true
+  },
+
+  // 编辑此页
+  editLink: {
+    pattern: 'https://github.com/oopsunix/oopsunix.github.io/edit/main/docs/:path',
+    text: 'Edit this page on GitHub'
+  },
+
   themeConfig: {
     logo: "https://akams.cn/favicon.png",
     // https://vitepress.dev/reference/default-theme-config
@@ -65,6 +84,7 @@ export default defineConfig({
       { icon: 'github', link: 'https://github.com/oopsunix' }
     ],
 
+    //页脚 //
     footer: {
       message: `Released under the MIT License.`,
       // message: `<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备xxxxxxxx号</a>`,
@@ -72,22 +92,12 @@ export default defineConfig({
     },
 
     lastUpdated: {
-      text: "最后更新于",
+      text: "Last Updated",
       formatOptions: {
         dateStyle: "short", // full
         timeStyle: "short", // medium
       },
     },
 
-    // 生成sitemap 站点地图
-    sitemap: {
-      hostname: 'https://www.akams.cn'
-    },
-
-    // 代码块显示行号
-    markdown: {
-      lineNumbers: true
-    }
-  
   }
 })
