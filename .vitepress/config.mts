@@ -32,8 +32,13 @@ const vitepressSidebarOptions = [
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "My Awesome Project",
+  title: "oopsunix",
   description: "A VitePress Site",
+  //fav图标
+  head: [
+    ['link',{ rel: 'icon', href: 'https://akams.cn/favicon.png'}],
+  ],
+  appearance:'dark', // 默认主题的外观模式，可选值为 'light' | 'dark'
   srcDir: "docs", // 指定文档的根目录
   base: '/', // 设置网站根路径，默认是 '/'
   themeConfig: {
@@ -73,5 +78,16 @@ export default defineConfig({
         timeStyle: "short", // medium
       },
     },
+
+    // 生成sitemap 站点地图
+    sitemap: {
+      hostname: 'https://www.akams.cn'
+    },
+
+    // 代码块显示行号
+    markdown: {
+      lineNumbers: true
+    }
+  
   }
 })

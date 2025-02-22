@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "AKAMS.CN"
+  name: "oopsunix"
   # text: "A VitePress Site"
   tagline: It's a long and beautiful life.
   actions:
