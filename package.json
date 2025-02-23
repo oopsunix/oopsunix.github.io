@@ -23,5 +23,8 @@
     "medium-zoom": "^1.1.0",
     "vitepress": "^1.6.3",
     "vitepress-sidebar": "^1.31.0"
+  },
+  "dependencies": {
+    "@waline/client": "^3.5.4"
   }
 }
