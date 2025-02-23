@@ -54,12 +54,6 @@ export default defineConfig({
     lineNumbers: true
   },
 
-  // 编辑此页
-  editLink: {
-    pattern: 'https://github.com/oopsunix/oopsunix.github.io/edit/main/docs/:path',
-    text: 'Edit this page on GitHub'
-  },
-
   themeConfig: {
     logo: "https://akams.cn/favicon.png",
     // https://vitepress.dev/reference/default-theme-config
@@ -97,6 +91,12 @@ export default defineConfig({
         dateStyle: "short", // full
         timeStyle: "short", // medium
       },
+    },
+
+    // 编辑此页
+    editLink: {
+      pattern: 'https://github.com/oopsunix/oopsunix.github.io/edit/main/docs/:path',
+      text: 'Edit this page on GitHub'
     },
 
   }
