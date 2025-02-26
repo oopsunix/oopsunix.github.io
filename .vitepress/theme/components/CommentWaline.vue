@@ -47,6 +47,6 @@ const emoji = [
 ];
 
 onMounted(()=>{
-  let path = computed(() => window.location.path);
+  let path = computed(() => window.location.href);
 })
 </script>
