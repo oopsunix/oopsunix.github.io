@@ -80,8 +80,8 @@ export default defineConfig({
 
     //页脚 //
     footer: {
-      message: `Released under the MIT License.`,
-      // message: `<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备xxxxxxxx号</a>`,
+      // message: `Released under the MIT License.`,
+      message: `<a href="https://beian.miit.gov.cn/" target="_blank">皖ICP备20002732号</a>`,
       copyright: `Copyright © ${new Date().getFullYear()} AKAMS.CN`,
     },
 
