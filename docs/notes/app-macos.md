@@ -1,5 +1,5 @@
 ---
-group: true
+title: 常用 Mac 应用
 ---
 
 **充电管理：** [AlDente](https://aldente.cn/)
