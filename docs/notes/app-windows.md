@@ -2,7 +2,7 @@
 title: 常用 Windows 应用
 ---
 
-
+# 常用 Windows 应用
 
 **搜索：** [Everything](https://www.voidtools.com/zh-cn/)、[Listary](https://www.listary.com/)（[快速切换](https://help.listary.com/zh-Hans/quick-switch)很好用）
 

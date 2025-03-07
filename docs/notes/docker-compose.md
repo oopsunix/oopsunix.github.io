@@ -1,8 +1,8 @@
 ---
-title: 常用 Docker 镜像 Docker Compose 配置
+title: 常用Docker镜像Compose配置
 ---
 
-# 常用 Docker 镜像 Docker Compose 配置
+# 常用Docker镜像Compose配置
 
 ## Alist
 

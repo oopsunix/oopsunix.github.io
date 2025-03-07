@@ -11,6 +11,7 @@
 <script setup>
 import { Waline } from '@waline/client/component';
 import { computed, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
 
 import '@waline/client/style';
 
@@ -46,7 +47,6 @@ const emoji = [
     'https://unpkg.com/@waline/emojis@1.2.0/alus'
 ];
 
-onMounted(()=>{
-  let path = computed(() => window.location.href);
-})
+
+const path = computed(() => useRoute().path);
 </script>
