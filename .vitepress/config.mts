@@ -42,18 +42,6 @@ export default defineConfig({
   srcDir: "docs", // 指定文档的根目录
   base: '/', // 设置网站根路径，默认是 '/'
 
-
-  // 生成sitemap 站点地图
-  sitemap: {
-    hostname: 'https://www.akams.cn'
-  },
-
-  //markdown配置
-  markdown: {
-    // 代码块显示行号
-    lineNumbers: true
-  },
-
   themeConfig: {
     logo: "https://akams.cn/favicon.png",
     // https://vitepress.dev/reference/default-theme-config
@@ -99,5 +87,22 @@ export default defineConfig({
       text: 'Edit this page on GitHub'
     },
 
-  }
+  },
+
+  // 生成sitemap 站点地图
+  sitemap: {
+    hostname: 'https://www.akams.cn'
+  },
+
+  //markdown配置
+  markdown: {
+    // 代码块显示行号
+    lineNumbers: true
+  },
+
+  vite:{
+    ssr: {
+      noExternal: ['dayjs'],
+    }
+  },
 })
