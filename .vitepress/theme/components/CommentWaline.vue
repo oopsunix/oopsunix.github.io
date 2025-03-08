@@ -11,11 +11,12 @@
 <script setup>
 import { Waline } from '@waline/client/component';
 import { computed, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute } from 'vitepress';
 
 import '@waline/client/style';
 
 const serverURL = 'https://comment.akams.cn';
+const path = computed(() => useRoute().path);
 const dark = 'html[class="dark"]';
 const reaction = [
     "https://npm.elemecdn.com/@waline/emojis@1.1.0/bilibili/bb_heart_eyes.png",
@@ -47,6 +48,4 @@ const emoji = [
     'https://unpkg.com/@waline/emojis@1.2.0/alus'
 ];
 
-
-const path = computed(() => useRoute().path);
 </script>

@@ -38,7 +38,7 @@ export default defineConfig({
   head: [
     ['link',{ rel: 'icon', href: 'https://akams.cn/favicon.png'}],
   ],
-  appearance:'dark', // 默认主题的外观模式，可选值为 'light' | 'dark'
+  //appearance:'dark', // 默认主题的外观模式，可选值为 'light' | 'dark'
   srcDir: "docs", // 指定文档的根目录
   base: '/', // 设置网站根路径，默认是 '/'
 
