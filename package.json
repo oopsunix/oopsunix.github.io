@@ -25,6 +25,7 @@
     "vitepress-sidebar": "^1.31.0"
   },
   "dependencies": {
+    "@theojs/lumen": "^5.4.0",
     "@waline/client": "^3.5.5"
   }
 }
