@@ -17,11 +17,12 @@ import '@waline/client/style';
 
 const serverURL = 'https://comment.akams.cn';
 // 从 window.location 获取域名和协议
-const baseUrl = `${window.location.protocol}//${window.location.host}`;
+// const baseUrl = `${window.location.protocol}//${window.location.host}`;
 // 使用 VitePress 的 useRoute 钩子来获取基于路由的相对路径
-const route = useRoute();
+// const route = useRoute();
 // 组合成完整 URL
-const path = computed(() => `${baseUrl}${route.path}`);
+// const path = computed(() => `${baseUrl}${route.path}`);
+const path = computed(() => useRoute().path);
 const dark = 'html[class="dark"]';
 const reaction = [
     "https://npm.elemecdn.com/@waline/emojis@1.1.0/bilibili/bb_heart_eyes.png",
