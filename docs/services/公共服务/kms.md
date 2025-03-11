@@ -1,21 +1,21 @@
+---
+title: 在线 KMS 激活
+---
+
+
 # KMS
 
-公共服务地址：`kms.akams.cn`
+**KMS 主机服务器：`kms.akams.cn`**
 
-> [!TIP]
+
+<!-- > [!TIP]
 >
-> 同时支持 IPv4 与 IPv6 访问
+> 同时支持 IPv4 与 IPv6 访问 -->
 
 
+- 支持 Windows 零售版（Retail）和 批量版（Volume）激活。
 
-
-> [!CAUTION]
->
-> 请勿攻击或滥用，攻击与滥用将导致整体服务质量的下降。对于攻击与滥用行为，我们将记录信息并拒绝为其继续提供服务。
-
-
-
-无论产品是 Windows 还是 Office，都需要使用 **批量（Volume）版本**。
+- 支持 Office 批量版（Volume）激活，零售必须先转换为批量。
 
 
 
@@ -27,27 +27,35 @@
 
 ## Office
 
-由于 Office 版本较多，不同版本操作方式有所差异。推荐使用 **[Office Tool Plus](https://otp.landian.vip/zh-cn/)** 工具进行安装和激活。
+由于 Office 版本较多，不同版本 Office 的激活略为复杂，推荐使用 **[Office Tool Plus](https://otp.landian.vip/zh-cn/)** 软件进行安装和激活。
 
 
-
-激活方法：
+激活 Office：
 
 - 激活--->许可证管理--->安装许可证
 - 激活--->KMS 管理--->KMS 主机填入`kms.akams.cn`--->点击`设置主机`
 - 激活--->许可证管理--->点击`激活`
 
 
+手动激活 Office：
 
+**以管理员身份**运行「命令提示符」或者「PowerShell」，输入以下命令：
 
+```cmd
+cd "C:\Program Files\Microsoft Office\Office16"  # 进入 Office 安装目录
+cscript ospp.vbs /inpkey:{对应Office产品密钥}      # 设置新密钥
+cscript ospp.vbs /sethst:kms.akams.cn            # 设置KMS服务器
+cscript ospp.vbs /act                            # 立即尝试激活
+cscript ospp.vbs /dstatus                        # 查看激活状态
+```
 
 ---
 
 
 
-### Windows 通用批量许可证密钥 (GVLK) 对照表(以下内容来自微软官方公开的序列号，请放心使用)
+## Windows 通用批量许可证密钥 (GVLK) 对照表(以下内容来自微软官方公开的序列号，请放心使用)
 
-#### Windows 11 和 Windows 10
+### Windows 11 和 Windows 10
 
 | **Product**                                                  | **GVLK**                      |
 | ------------------------------------------------------------ | ----------------------------- |
@@ -64,7 +72,7 @@
 | Windows 10 Enterprise G (Windows 10 企业版 G)<br /> Windows 11 Enterprise G (Windows 11 企业版 G) | YYVX9-NTFWV-6MDM3-9PT4T-4M68B |
 | Windows 10 Enterprise G N (Windows 10 企业版 G N) <br />Windows 11 Enterprise G N (Windows 11 企业版 G N) | 44RPN-FTY23-9VTTB-MP9BX-T84FV |
 
-#### Windows 企业版 （LTSC/LTSB 版本）
+### Windows 企业版 （LTSC/LTSB 版本）
 
 | **Product**                                                  | **GVLK**                      |
 | ------------------------------------------------------------ | ----------------------------- |
@@ -76,7 +84,7 @@
 | Windows 10 Enterprise 2015 LTSB                              | WNMTR-4C88C-JK8YV-HQ7T2-76DF9 |
 | Windows 10 Enterprise 2015 LTSB N                            | 2F77B-TNFGY-69QQF-B8YKP-D69TJ |
 
-#### Windows 8.1
+### Windows 8.1
 
 | **Product**                | **GVLK**                      |
 | -------------------------- | ----------------------------- |
@@ -85,7 +93,7 @@
 | Windows 8.1 Enterprise     | MHF9N-XY6XB-WVXMC-BTDCT-MKKG7 |
 | Windows 8.1 Enterprise N   | TT4HM-HN7YT-62K67-RGRQJ-JFFXW |
 
-#### Windows 8
+### Windows 8
 
 | **Product**              | **GVLK**                      |
 | ------------------------ | ----------------------------- |
@@ -94,7 +102,7 @@
 | Windows 8 Enterprise     | 32JNW-9KQ84-P47T8-D8GGY-CWCK7 |
 | Windows 8 Enterprise N   | JMNMF-RHW7P-DMY6X-RF3DR-X2BQT |
 
-#### Windows 7
+### Windows 7
 
 | **Product**              | **GVLK**                      |
 | ------------------------ | ----------------------------- |
@@ -105,7 +113,7 @@
 | Windows 7 Enterprise N   | YDRBP-3D83W-TY26F-D46B2-XCKRJ |
 | Windows 7 Enterprise E   | C29WB-22CC8-VJ326-GHFJW-H9DH4 |
 
-#### Windows Vista
+### Windows Vista
 
 | **Product**                | **GVLK**                      |
 | -------------------------- | ----------------------------- |
@@ -114,7 +122,7 @@
 | Windows Vista Enterprise   | VKK3X-68KWM-X2YGT-QR4M6-4BWMV |
 | Windows Vista Enterprise N | VTC42-BM838-43QHV-84HX6-XJXKV |
 
-#### Windows Server 2025
+### Windows Server 2025
 
 | **Product**                                   | **GVLK**                      |
 | :-------------------------------------------- | :---------------------------- |
@@ -122,7 +130,7 @@
 | Windows Server 2025 Datacenter                | D764K-2NDRG-47T6Q-P8T8W-YP6DF |
 | Windows Server 2025 Datacenter：Azure Edition | XGN3F-F394H-FD2MY-PP6FD-8MCRC |
 
-#### Windows Server 2022
+### Windows Server 2022
 
 | **Product**                                   | **GVLK**                      |
 | --------------------------------------------- | ----------------------------- |
@@ -130,7 +138,7 @@
 | Windows Server 2022 Datacenter                | WX4NM-KYWYW-QJJR4-XV3QB-6VM33 |
 | Windows Server 2022 Datacenter：Azure Edition | NTBV8-9K7Q8-V27C6-M2BTV-KHMXV |
 
-#### Windows Server 2019
+### Windows Server 2019
 
 | **Product**                    | **GVLK**                      |
 | ------------------------------ | ----------------------------- |
@@ -138,7 +146,7 @@
 | Windows Server 2019 Datacenter | WMDGN-G9PQG-XVVXX-R3X43-63DFG |
 | Windows Server 2019 Essentials | WVDHN-86M7X-466P6-VHXV7-YY726 |
 
-#### Windows Server 2016
+### Windows Server 2016
 
 | **Product**                    | **GVLK**                      |
 | ------------------------------ | ----------------------------- |
@@ -146,28 +154,28 @@
 | Windows Server 2016 Datacenter | CB7KF-BWN84-R7R2Y-793K2-8XDDG |
 | Windows Server 2016 Essentials | JCKRF-N37P4-C2D82-9YXRT-4M63B |
 
-#### Windows Server 版本 20H2、2004、1909、1903 和 1809
+### Windows Server 20H2、2004、1909、1903 和 1809
 
 | **Product**               | **GVLK**                      |
 | ------------------------- | ----------------------------- |
 | Windows Server Standard   | N2KJX-J94YW-TQVFB-DG9YT-724CC |
 | Windows Server Datacenter | 6NMRW-2C8FM-D24W7-TQWMY-CWH2D |
 
-#### Windows Server 版本 1803
+### Windows Server 1803
 
 | **Product**               | **GVLK**                      |
 | ------------------------- | ----------------------------- |
 | Windows Server Standard   | PTXN8-JFHJM-4WC78-MPCBR-9W4KR |
 | Windows Server Datacenter | 2HXDN-KRXHB-GPYC7-YCKFJ-7FVDG |
 
-#### Windows Server 版本 1709
+### Windows Server 1709
 
 | **Product**               | **GVLK**                      |
 | ------------------------- | ----------------------------- |
 | Windows Server Standard   | DPCNP-XQFKJ-BJF7R-FRC8D-GF6G4 |
 | Windows Server Datacenter | 6Y6KB-N82V8-D8CQV-23MJW-BWTG6 |
 
-#### Windows Server 2012 R2
+### Windows Server 2012 R2
 
 | **Product**                       | **GVLK**                      |
 | --------------------------------- | ----------------------------- |
@@ -175,7 +183,7 @@
 | Windows Server 2012 R2 Datacenter | W3GGN-FT8W3-Y4M27-J84CP-Q3VJ9 |
 | Windows Server 2012 R2 Essentials | KNC87-3J2TX-XB4WP-VCPJV-M4FWM |
 
-#### Windows Server 2012
+### Windows Server 2012
 
 | **Product**                             | **GVLK**                      |
 | --------------------------------------- | ----------------------------- |
@@ -189,7 +197,7 @@
 | Windows Server 2012 Datacenter          | 48HP8-DN98B-MYWDG-T2DCC-8W83P |
 | Windows Server 2012 Essentials          | HTDQM-NBMMG-KGYDT-2DTKT-J2MPV |
 
-#### Windows Server 2008 R2
+### Windows Server 2008 R2
 
 | **Product**                                      | **GVLK**                      |
 | ------------------------------------------------ | ----------------------------- |
@@ -200,7 +208,7 @@
 | Windows Server 2008 R2 Datacenter                | 74YFP-3QFB3-KQT8W-PMXWJ-7M648 |
 | Windows Server 2008 R2 for Itanium-based Systems | GT63C-RJFQ3-4GMB6-BRFB9-CB83V |
 
-#### Windows Server 2008
+### Windows Server 2008
 
 | **Product**                                    | **GVLK**                      |
 | ---------------------------------------------- | ----------------------------- |
@@ -220,9 +228,9 @@
 
 
 
-### Office 通用批量许可证密钥 (GVLK) 对照表 (以下内容来自微软官方公开的序列号，请放心使用)
+## Office 通用批量许可证密钥 (GVLK) 对照表 (以下内容来自微软官方公开的序列号，请放心使用)
 
-#### Office LTSC 2024
+### Office LTSC 2024
 
 | **Product**                        | **GVLK**                      |
 | ---------------------------------- | ----------------------------- |
@@ -239,7 +247,7 @@
 | Skype for Business LTSC 2024       | 4NKHF-9HBQF-Q3B6C-7YV34-F64P3 |
 | Word LTSC 2024                     | MQ84N-7VYDM-FXV7C-6K7CC-VFW9J |
 
-#### Office LTSC 2021
+### Office LTSC 2021
 
 | **Product**                        | **GVLK**                      |
 | ---------------------------------- | ----------------------------- |
@@ -257,7 +265,7 @@
 | Skype for Business LTSC 2021       | HWCXN-K3WBT-WJBKY-R8BD9-XK29P |
 | Word LTSC 2021                     | TN8H9-M34D3-Y64V9-TR72V-X79KV |
 
-#### Office 2019
+### Office 2019
 
 | **Product**                   | **GVLK**                      |
 | ----------------------------- | ----------------------------- |
@@ -275,7 +283,7 @@
 | Skype for Business 2019       | NCJ33-JHBBY-HTK98-MYCV8-HMKHJ |
 | Word 2019                     | PBX3G-NWMT6-Q7XBW-PYJGG-WXD33 |
 
-#### Office 2016
+### Office 2016
 
 | **Product**                   | **GVLK**                      |
 | ----------------------------- | ----------------------------- |
@@ -294,7 +302,7 @@
 | Skype for Business 2016       | 869NQ-FJ69K-466HW-QYCP2-DDBV6 |
 | Word 2016                     | WXY84-JN2Q9-RBCCQ-3Q3J3-3PFJ6 |
 
-#### Office 2013
+### Office 2013
 
 | **Product**                   | **GVLK**                      |
 | ----------------------------- | ----------------------------- |
@@ -314,7 +322,7 @@
 | Publisher 2013                | PN2WF-29XG2-T9HJ7-JQPJR-FCXK4 |
 | Word 2013                     | 6Q7VD-NX8JD-WJ2VH-88V73-4GBJ7 |
 
-#### Office 2010
+### Office 2010
 
 | **Product**                   | **GVLK**                      |
 | ----------------------------- | ----------------------------- |
