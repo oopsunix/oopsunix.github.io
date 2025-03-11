@@ -8,18 +8,14 @@ title: Github 文件加速
 支持GitHub （Git Clone、Releases、Archive、Gist、Raw） 文件加速访问，提升下载体验。
 
 
-## 加速地址
-
-```
-https://gh.llkk.cc
-```
+**加速地址:**`https://gh.llkk.cc`
 
 
 ## 使用方式
 
-在源网址前加上 https://hub.gitmirror.com/，例如：
+在GitHub文件链接前加上`https://gh.llkk.cc/`，例如：
 
-**https://gh.llkk.cc/**https://raw.githubusercontent.com/microsoft/vscode/main/LICENSE.txt
+- https://gh.llkk.cc/https://raw.githubusercontent.com/microsoft/vscode/main/LICENSE.txt
 
 
 ## 使用说明

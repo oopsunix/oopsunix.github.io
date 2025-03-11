@@ -3,7 +3,7 @@ title: 在线 KMS 激活
 ---
 
 
-# KMS
+# Windows 和 Office KMS 激活服务器
 
 **KMS 主机服务器：`kms.akams.cn`**
 
