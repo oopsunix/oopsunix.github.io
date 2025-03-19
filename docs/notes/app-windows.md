@@ -26,3 +26,4 @@ title: 常用 Windows 应用
 
 **多源翻译：**[STranslate](https://stranslate.zggsong.com/) （多渠道划词翻译）
 
+**解压缩：** [7-Zip](https://www.7-zip.org/)、[Bandizip](https://www.bandisoft.com/bandizip/)【[智能解压](https://www.bandisoft.com/bandizip/help/auto_dest/)很好用】（6.25版本，最后一个原生免费版本，下载后安装没有任何限制，目前最新7版本以上，自带广告需付费激活）

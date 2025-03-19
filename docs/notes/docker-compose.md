@@ -1,8 +1,33 @@
 ---
-title: 常用Docker镜像Compose配置
+title: 常用Docker镜像
 ---
 
-# 常用Docker镜像Compose配置
+# 常用Docker镜像
+
+
+
+| 应用            | 描述                                                         |
+| --------------- | ------------------------------------------------------------ |
+| AList           | 支持多存储的文件列表程序和私人网盘                           |
+| Bitwarden       | 开源的密码管理器                                             |
+| ddns-go         | 自动获得你的公网 IPv4 或 IPv6 地址，并解析到对应的域名服务   |
+| Dockge          | 自托管 docker compose.yaml 面向堆栈的管理器                  |
+| Docker Registry | Docker 镜像存储库                                            |
+| Excalidraw      | 手绘效果白板绘图工具                                         |
+| kms             | Windows、Office批量激活                                      |
+| Memos           | 轻量级、自托管的备忘录中心                                   |
+| NeZha           | 开源、轻量、易用的服务器监控、运维工具                       |
+| qBittorrent     | 跨平台的开源 BitTorrent 客户端                               |
+| RustDesk        | 开源的远程桌面软件                                           |
+| SpeedTest       | 互联网速度测试                                               |
+| twikoo          | 开源评论系统                                                 |
+| Umami           | Google Analytics 的简单、快速、注重隐私的替代方案            |
+| Uptime Kuma     | 开源的服务器监控和状态检测工具                               |
+| 青龙            | 支持 Python3、JavaScript、Shell、Typescript 的定时任务管理平台 |
+
+
+
+## Docker Compose 配置
 
 ## Alist
 
