@@ -240,6 +240,12 @@ export interface PhotoData {
   travel?: string
 }
 
+export interface FriendsConfig {
+  title: string
+  description: string
+  introduce: string
+}
+
 export interface GitalkConfig {
   clientID: string
   clientSecret: string

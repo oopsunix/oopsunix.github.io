@@ -1,6 +1,7 @@
 import type {
   AnalyticsConfig,
   CommentConfig,
+  FriendsConfig,
   GithubConfig,
   Link,
   PhotosConfig,
@@ -38,6 +39,10 @@ export const HEADER_LINKS: Link[] = [
     name: 'Photos',
     url: '/photos',
   },
+  {
+    name: 'Friends',
+    url: '/friends',
+  },
 ]
 
 export const FOOTER_LINKS: Link[] = [
@@ -60,6 +65,10 @@ export const FOOTER_LINKS: Link[] = [
   {
     name: 'Photos',
     url: '/photos',
+  },
+  {
+    name: 'Friends',
+    url: '/friends',
   },
 ]
 
@@ -285,6 +294,12 @@ export const PHOTOS_CONFIG: PhotosConfig = {
   title: 'Photos',
   description: 'Here I will record some photos taken in daily life.',
   introduce: 'Here I will record some photos taken in daily life.',
+}
+
+export const FRIENDS_CONFIG: FriendsConfig = {
+  title: 'Friends',
+  description: "Links to my friends' sites.",
+  introduce: 'Some lovely friends and their sites.',
 }
 
 export const ANALYTICS_CONFIG: AnalyticsConfig = {

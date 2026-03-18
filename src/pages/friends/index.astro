@@ -1,0 +1,34 @@
+---
+import { FRIENDS_CONFIG } from '~/config'
+import Layout from '~/layouts/Layout.astro'
+import PageTitle from '~/components/base/PageTitle.astro'
+import friendsData from '~/content/friends/friends.json'
+
+const { title, description, introduce } = FRIENDS_CONFIG
+const friends = friendsData
+---
+
+<Layout {title} {description}>
+  <div class="relative z-[1] py-8 pb-10 px-4 sm:px-6">
+    <PageTitle {title} {introduce} />
+    <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 fade-up">
+      {
+        friends.map((friend) => (
+          <a
+            href={friend.url}
+            target="_blank"
+            class="group flex items-center gap-4 border border-border/40 bg-muted/50 px-4 sm:px-6 py-4 sm:py-5 transition-all duration-300 hover:-translate-y-0.5 hover:bg-muted/70 hover:shadow-[0_14px_35px_rgba(15,23,42,0.14)] dark:bg-muted/40 dark:hover:bg-muted/60"
+          >
+            <div class="flex h-[50px] w-[50px] items-center justify-center overflow-hidden rounded-full bg-background/60 shadow-sm">
+              <img src={friend.avatar} alt={friend.name} class="h-full w-full object-cover" loading="lazy" />
+            </div>
+            <div class="flex min-w-0 flex-col">
+              <span class="truncate text-base sm:text-lg font-semibold text-foreground group-hover:text-foreground/90">{friend.name}</span>
+              <span class="mt-1 line-clamp-2 text-sm text-muted-foreground">{friend.desc}</span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</Layout>
