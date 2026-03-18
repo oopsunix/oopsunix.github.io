@@ -1,6 +1,7 @@
 ---
 import { COMMENT_CONFIG } from '~/config'
 import Gitalk from './Gitalk.astro'
+import Giscus from './Giscus.astro'
 
 interface Props {
   id: string
@@ -19,4 +20,5 @@ if (!enabled || system === 'none') {
   <h3 class="text-xl font-semibold mb-6 text-[var(--color-heading)]">Comments</h3>
 
   {system === 'gitalk' && <Gitalk id={id} title={title} />}
+  {system === 'giscus' && <Giscus id={id} title={title} />}
 </div>

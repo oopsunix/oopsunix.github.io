@@ -262,7 +262,7 @@ export const POSTS_CONFIG: PostConfig = {
 
 export const COMMENT_CONFIG: CommentConfig = {
   enabled: true,
-  system: 'gitalk',
+  system: 'giscus',
   gitalk: {
     clientID: import.meta.env.PUBLIC_GITHUB_CLIENT_ID,
     clientSecret: import.meta.env.PUBLIC_GITHUB_CLIENT_SECRET,
@@ -275,6 +275,22 @@ export const COMMENT_CONFIG: CommentConfig = {
     createIssueManually: false,
     distractionFreeMode: false,
     enableHotKey: true,
+  },
+  // Giscus 配置示例（如需使用，请将 system 改为 'giscus' 并填写以下配置）
+  // 获取这些值请访问：https://giscus.app/zh-CN
+  giscus: {
+    repo: 'oopsunix/giscus', // 仓库名，格式：用户名/仓库名
+    repoId: 'R_kgDORqENNQ', // 仓库 ID
+    category: 'Announcements', // 讨论分类名称
+    categoryId: 'DIC_kwDORqENNc4C4qGm', // 讨论分类 ID
+    mapping: 'pathname', // 页面 ↔️ discussion 映射关系
+    strict: '1', // 严格匹配
+    reactionsEnabled: '1', // 启用反应
+    emitMetadata: '0', // 发出元数据
+    inputPosition: 'top', // 输入框位置：'top' | 'bottom'
+    theme: 'preferred_color_scheme', // 主题
+    lang: 'zh-CN', // 语言
+    loading: 'lazy', // 加载方式：'lazy' | 'eager'
   },
 }
 

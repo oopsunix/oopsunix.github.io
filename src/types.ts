@@ -260,6 +260,21 @@ export interface GitalkConfig {
   enableHotKey?: boolean
 }
 
+export interface GiscusConfig {
+  repo: string // 仓库名，格式：用户名/仓库名
+  repoId: string // 仓库 ID
+  category: string // 讨论分类名称
+  categoryId: string // 讨论分类 ID
+  mapping?: 'pathname' | 'url' | 'title' | 'og:title' | 'specific' | 'number' // 页面与讨论的映射方式
+  strict?: '0' | '1' // 严格匹配
+  reactionsEnabled?: '0' | '1' // 是否启用反应
+  emitMetadata?: '0' | '1' // 是否发出元数据
+  inputPosition?: 'top' | 'bottom' // 输入框位置
+  theme?: string // 主题
+  lang?: string // 语言
+  loading?: 'lazy' | 'eager' // 加载方式
+}
+
 export interface AnalyticsConfig {
   vercount?: {
     enabled: boolean
@@ -277,6 +292,7 @@ export interface AnalyticsConfig {
 
 export interface CommentConfig {
   enabled: boolean
-  system: 'gitalk' | 'artalk' | 'waline' | 'none'
+  system: 'gitalk' | 'giscus' | 'artalk' | 'waline' | 'none'
   gitalk?: GitalkConfig
+  giscus?: GiscusConfig
 }

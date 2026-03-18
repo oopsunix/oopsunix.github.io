@@ -1,0 +1,161 @@
+---
+interface Props {
+  id: string
+  title: string
+}
+
+const { id, title } = Astro.props
+---
+
+<div id="giscus-container" data-id={id} data-title={title}></div>
+
+<script>
+  import { COMMENT_CONFIG } from '~/config'
+  const { giscus } = COMMENT_CONFIG
+
+  let observer: IntersectionObserver | null = null
+  let isInitialized = false
+
+  function initGiscus() {
+    if (!giscus || isInitialized) return
+    isInitialized = true
+
+    const container = document.getElementById('giscus-container')
+    if (!container) return
+
+    const script = document.createElement('script')
+    script.src = 'https://giscus.app/client.js'
+    script.setAttribute('data-repo', giscus.repo)
+    script.setAttribute('data-repo-id', giscus.repoId)
+    script.setAttribute('data-category', giscus.category)
+    script.setAttribute('data-category-id', giscus.categoryId)
+    script.setAttribute('data-mapping', giscus.mapping || 'pathname')
+    script.setAttribute('data-strict', giscus.strict ? '1' : '0')
+    script.setAttribute('data-reactions-enabled', giscus.reactionsEnabled !== false ? '1' : '0')
+    script.setAttribute('data-emit-metadata', giscus.emitMetadata ? '1' : '0')
+    script.setAttribute('data-input-position', giscus.inputPosition || 'bottom')
+    script.setAttribute('data-lang', giscus.lang || 'zh-CN')
+    script.setAttribute('data-loading', giscus.loading || 'lazy')
+    script.crossOrigin = 'anonymous'
+    script.async = true
+
+    // 根据当前主题设置 Giscus 主题
+    const currentTheme = document.documentElement.classList.contains('dark')
+    const theme = currentTheme ? 'dark' : 'light'
+    script.setAttribute('data-theme', giscus.theme || theme)
+
+    container.appendChild(script)
+  }
+
+  function isElementInViewport(element: Element) {
+    const rect = element.getBoundingClientRect()
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight
+    return rect.top <= windowHeight + 3000 && rect.bottom >= -3000
+  }
+
+  function setupObserver() {
+    const container = document.getElementById('giscus-container')
+    if (!container) return
+
+    // 清理之前的观察器
+    cleanup()
+
+    // 检查是否已经在可视区域内
+    if (isElementInViewport(container)) {
+      initGiscus()
+      return
+    }
+
+    // 设置观察器监听
+    observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isInitialized) {
+            initGiscus()
+            cleanup()
+          }
+        })
+      },
+      {
+        rootMargin: '3000px',
+        threshold: 0,
+      }
+    )
+
+    observer.observe(container)
+  }
+
+  function cleanup() {
+    if (observer) {
+      observer.disconnect()
+      observer = null
+    }
+  }
+
+  // 主题切换处理
+  function handleThemeChange() {
+    const iframe = document.querySelector<HTMLIFrameElement>('iframe.giscus-frame')
+    if (iframe && giscus) {
+      const currentTheme = document.documentElement.classList.contains('dark')
+      const theme = currentTheme ? 'dark' : 'light'
+      iframe.contentWindow?.postMessage(
+        {
+          giscus: {
+            setConfig: {
+              theme: giscus.theme || theme,
+            },
+          },
+        },
+        'https://giscus.app'
+      )
+    }
+  }
+
+  // 重置函数，在页面切换时调用
+  function resetAndInitialize() {
+    isInitialized = false // 关键：重置初始化状态
+    cleanup()
+    setupObserver()
+  }
+
+  // 初始设置
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupObserver)
+  } else {
+    setupObserver()
+  }
+
+  // 监听主题变化
+  const observer_theme = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === 'class') {
+        handleThemeChange()
+      }
+    })
+  })
+
+  observer_theme.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['class'],
+  })
+
+  document.addEventListener('astro:page-load', resetAndInitialize)
+  document.addEventListener('astro:before-preparation', cleanup)
+  window.addEventListener('beforeunload', cleanup)
+</script>
+
+<style is:global>
+  #giscus-container {
+    min-height: 10px;
+  }
+
+  .giscus,
+  .giscus-frame {
+    width: 100%;
+  }
+
+  .giscus-frame {
+    border: none;
+    color-scheme: auto;
+  }
+</style>
