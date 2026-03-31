@@ -15,13 +15,12 @@ import type {
 
 //--- Readme Page Config ---
 export const SITE: Site = {
-  title: 'Litos',
-  description:
-    'Litos is a modern blogging theme built on Astro.js, designed for developers. It supports multiple post layouts, photo displays, project displays, and more, providing an elegant user experience and powerful customization capabilities.',
-  website: 'https://litos.vercel.app/',
+  title: 'OopsUnix',
+  description: "It's a long and beautiful life.",
+  website: 'https://oopsunix.com/',
   lang: 'en',
   base: '/',
-  author: 'Dnzzk2',
+  author: 'OopsUnix',
   ogImage: '/og-image.webp',
   transition: false,
 }
@@ -35,10 +34,10 @@ export const HEADER_LINKS: Link[] = [
     name: 'Projects',
     url: '/projects',
   },
-  {
-    name: 'Photos',
-    url: '/photos',
-  },
+  // {
+  //   name: 'Photos',
+  //   url: '/photos',
+  // },
   {
     name: 'Friends',
     url: '/friends',
@@ -62,10 +61,10 @@ export const FOOTER_LINKS: Link[] = [
     name: 'Tags',
     url: '/tags',
   },
-  {
-    name: 'Photos',
-    url: '/photos',
-  },
+  // {
+  //   name: 'Photos',
+  //   url: '/photos',
+  // },
   {
     name: 'Friends',
     url: '/friends',
@@ -76,18 +75,18 @@ export const FOOTER_LINKS: Link[] = [
 export const SOCIAL_LINKS: SocialLink[] = [
   {
     name: 'github',
-    url: 'https://github.com/Dnzzk2',
+    url: 'https://github.com/OopsUnix',
     icon: 'icon-[ri--github-fill]',
     count: 20,
   },
   {
     name: 'twitter',
-    url: 'https://x.com/yourname',
+    url: 'https://x.com/OopsUnix',
     icon: 'icon-[ri--twitter-x-fill]',
   },
   {
     name: 'bilibili',
-    url: 'https://space.bilibili.com/yourSpaceId',
+    url: 'https://space.bilibili.com/1',
     icon: 'icon-[ri--bilibili-fill]',
   },
 ]
@@ -103,7 +102,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
  * get icon https://icon-sets.iconify.design/
  */
 export const SKILLSSHOWCASE_CONFIG: SkillsShowcaseConfig = {
-  SKILLS_ENABLED: true,
+  SKILLS_ENABLED: false,
   SKILLS_DATA: [
     {
       direction: 'left',
@@ -223,7 +222,7 @@ export const SKILLSSHOWCASE_CONFIG: SkillsShowcaseConfig = {
 
 export const GITHUB_CONFIG: GithubConfig = {
   ENABLED: true,
-  GITHUB_USERNAME: 'Dnzzk2',
+  GITHUB_USERNAME: 'OopsUnix',
   TOOLTIP_ENABLED: true,
 }
 
@@ -231,7 +230,7 @@ export const GITHUB_CONFIG: GithubConfig = {
 export const POSTS_CONFIG: PostConfig = {
   title: 'Posts',
   description: 'Posts by Dnzzk2',
-  introduce: 'Here, I will share the usage instructions for this theme to help you quickly use it.',
+  introduce: 'Daily study notes.',
   author: 'Dnzzk2',
   homePageConfig: {
     size: 2,
@@ -239,7 +238,7 @@ export const POSTS_CONFIG: PostConfig = {
   },
   postPageConfig: {
     size: 10,
-    type: 'image',
+    type: 'time-line',
     coverLayout: 'right',
   },
   tagsPageConfig: {
