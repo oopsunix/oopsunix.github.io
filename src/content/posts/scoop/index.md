@@ -12,11 +12,11 @@ Linux和MacOS都有包管理工具，如apt、brew，只需敲几个命令，就
 
 **安全工具一键更新：**使用`scoop update *`命令一键更新已安装的工具到最新版
 
-![image-20240920183252906](https://cfs.whoopscs.com/md/image-20240920183252906.png)
+![image-20240920183252906](./assets/image-20240920183252906.png)
 
 **BurpSuite 插件更新：**对应插件重新勾选一下就是最新版
 
-![image-20240920223557706](https://cfs.whoopscs.com/md/image-20240920223557706.png)
+![image-20240920223557706](./assets/image-20240920223557706.png)
 
 ## 项目简介
 
@@ -204,7 +204,7 @@ Scoop 默认软件仓库（main bucket）软件数量是有限的，但是可以
 ```
 //scoop bucket add <仓库别名> <仓库地址>
 
-scoop bucket add sec https://github.com/whoopscs/scoop-security
+scoop bucket add sec https://github.com/tldrw/scoop-security
 ```
 
 - 查找软件

@@ -2,7 +2,7 @@
 title: Android 14 通过 adb 保留数据降级软件
 pubDate: 2024-10-30
 description: 在高版本安卓中实现保留数据降级软件版本。
-author: 'TLDRO'
+author: 'OopsUnix'
 tags: [Android]
 ---
 
