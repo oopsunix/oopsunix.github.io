@@ -12,6 +12,7 @@ import { getAllPosts } from '~/lib/data'
 import SectionDivider from '~/components/base/SectionDivider.astro'
 import Comment from '~/components/posts/base/Comment.astro'
 import License from '~/components/posts/base/License.astro'
+import Decryptor from '~/components/posts/base/Decryptor.astro'
 
 export async function getStaticPaths() {
   const sortedPosts = await getAllPosts()
@@ -33,6 +34,7 @@ const { Content, headings, remarkPluginFrontmatter } = await render(post)
 const filterHeadings = headings.filter((heading: any) => heading.slug !== 'footnote-label')
 
 const hasValidHeadings = filterHeadings.length > 1
+const isEncrypted = !!frontmatter.password
 type LayoutKey = 'metaOnly' | 'coverSplit' | 'coverTop'
 
 const layoutMap: Record<LayoutKey, any> = {
@@ -53,15 +55,26 @@ const PostLayout = layoutMap[layoutKey]
   <div class="relative flex flex-col justify-between h-fit z-[1]">
     <TocMobile {post} {posts} headings={filterHeadings} />
     <PostLayout {frontmatter} minutesRead={remarkPluginFrontmatter.minutesRead} wordCount={remarkPluginFrontmatter.wordCount}>
-      <Content />
-      {
-        frontmatter.license && (
-          <>
-            <hr class="pb-6" />
-            <License license={frontmatter.license} title={frontmatter.title} author={frontmatter.author} />
-          </>
-        )
-      }
+      {isEncrypted ? (
+        <>
+          <div class="hidden">
+            <Content />
+          </div>
+          <Decryptor />
+        </>
+      ) : (
+        <>
+          <Content />
+          {
+            frontmatter.license && (
+              <>
+                <hr class="pb-6" />
+                <License license={frontmatter.license} title={frontmatter.title} author={frontmatter.author} />
+              </>
+            )
+          }
+        </>
+      )}
     </PostLayout>
     {
       posts.length > 1 && (

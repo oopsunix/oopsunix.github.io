@@ -1,0 +1,162 @@
+---
+
+---
+
+<div id="decrypt-prompt" class="flex flex-col items-center justify-center py-16 sm:py-20">
+  <div class="relative w-full max-w-md mx-auto px-6">
+    <div class="flex flex-col items-center gap-6">
+      <div class="relative">
+        <span class="icon-[ph--lock-key] text-5xl sm:text-6xl text-muted-foreground/40"></span>
+      </div>
+
+      <div class="text-center space-y-2">
+        <p class="text-lg font-medium text-foreground/80">此文章已加密</p>
+        <p class="text-sm text-muted-foreground/70">请输入密码以查看内容</p>
+      </div>
+
+      <form id="decrypt-form" class="w-full space-y-3" onsubmit="return false">
+        <div class="relative">
+          <input
+            type="password"
+            id="decrypt-password"
+            placeholder="请输入密码"
+            autocomplete="off"
+            class="w-full px-4 py-2.5 pr-10 bg-background border border-border/60 rounded-lg text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all"
+          />
+          <button
+            type="button"
+            id="toggle-password"
+            class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground/50 hover:text-muted-foreground transition-colors"
+          >
+            <span class="icon-[ph--eye] text-lg" id="eye-icon"></span>
+          </button>
+        </div>
+
+        <p id="decrypt-error" class="hidden text-sm text-destructive/80 text-center"></p>
+
+        <button
+          type="submit"
+          id="decrypt-btn"
+          class="w-full px-4 py-2.5 bg-primary/90 text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          解密文章
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="decrypted-content" class="hidden"></div>
+
+<script is:inline>
+  ;(function () {
+    const PBKDF2_ITERATIONS = 100000
+
+    function b64ToBuf(b64) {
+      const binary = atob(b64)
+      const bytes = new Uint8Array(binary.length)
+      for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i)
+      return bytes.buffer
+    }
+
+    async function deriveKey(password, saltB64) {
+      const enc = new TextEncoder()
+      const keyMaterial = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveKey'])
+      return crypto.subtle.deriveKey(
+        { name: 'PBKDF2', salt: new Uint8Array(b64ToBuf(saltB64)), iterations: PBKDF2_ITERATIONS, hash: 'SHA-256' },
+        keyMaterial,
+        { name: 'AES-GCM', length: 256 },
+        false,
+        ['decrypt']
+      )
+    }
+
+    async function decrypt(encryptedB64, saltB64, ivB64, authTagB64, password) {
+      const key = await deriveKey(password, saltB64)
+      const iv = new Uint8Array(b64ToBuf(ivB64))
+      const authTag = new Uint8Array(b64ToBuf(authTagB64))
+      const encrypted = new Uint8Array(b64ToBuf(encryptedB64))
+
+      const ciphertext = new Uint8Array(encrypted.length + authTag.length)
+      ciphertext.set(encrypted)
+      ciphertext.set(authTag, encrypted.length)
+
+      const decrypted = await crypto.subtle.decrypt({ name: 'AES-GCM', iv, tagLength: 128 }, key, ciphertext)
+      return new TextDecoder().decode(decrypted)
+    }
+
+    const encryptedEl = document.getElementById('encrypted-content')
+    if (!encryptedEl) return
+
+    const promptEl = document.getElementById('decrypt-prompt')
+    const contentEl = document.getElementById('decrypted-content')
+    const form = document.getElementById('decrypt-form')
+    const input = document.getElementById('decrypt-password')
+    const errorEl = document.getElementById('decrypt-error')
+    const toggleBtn = document.getElementById('toggle-password')
+    const eyeIcon = document.getElementById('eye-icon')
+    const decryptBtn = document.getElementById('decrypt-btn')
+
+    toggleBtn.addEventListener('click', () => {
+      const isPassword = input.type === 'password'
+      input.type = isPassword ? 'text' : 'password'
+      eyeIcon.className = isPassword ? 'icon-[ph--eye-slash] text-lg' : 'icon-[ph--eye] text-lg'
+    })
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      const password = input.value.trim()
+      if (!password) return
+
+      decryptBtn.disabled = true
+      decryptBtn.textContent = '解密中...'
+      errorEl.classList.add('hidden')
+
+      try {
+        const html = await decrypt(
+          encryptedEl.dataset.encrypted,
+          encryptedEl.dataset.salt,
+          encryptedEl.dataset.iv,
+          encryptedEl.dataset.authTag,
+          password
+        )
+
+        promptEl.classList.add('hidden')
+        contentEl.innerHTML = html
+        contentEl.classList.remove('hidden')
+
+        contentEl.querySelectorAll('pre code').forEach((block) => {
+          block.removeAttribute('data-processed')
+        })
+
+        if (window.ExpressiveCode) {
+          try {
+            const highlights = contentEl.querySelectorAll('.expressive-code')
+            highlights.forEach((el) => {
+              el.querySelectorAll('pre code').forEach((code) => {
+                code.removeAttribute('data-processed')
+              })
+            })
+          } catch (_) {}
+        }
+
+        window.dispatchEvent(new CustomEvent('content-decrypted', { detail: { container: contentEl } }))
+      } catch (err) {
+        errorEl.textContent = '密码错误，请重试'
+        errorEl.classList.remove('hidden')
+        input.value = ''
+        input.focus()
+      } finally {
+        decryptBtn.disabled = false
+        decryptBtn.textContent = '解密文章'
+      }
+    })
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault()
+        form.dispatchEvent(new Event('submit'))
+      }
+    })
+  })()
+</script>

@@ -25,6 +25,7 @@ const posts = defineCollection({
         pinned: z.boolean().default(false),
         draft: z.boolean().default(false),
         license: z.string().optional(),
+        password: z.string().optional(),
       })
       .transform((data) => ({
         ...data,
